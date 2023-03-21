@@ -15,5 +15,7 @@ public class ArticleCategoryMapping : IEntityTypeConfiguration<ArticleCategory>
         builder.ToTable("ArticleCategories");
         builder.HasKey(t => t.Id);
         builder.Property(x => x.Title).HasMaxLength(500);
+        builder.HasMany(x => x.Articles).WithOne(x => x.ArticleCategory).HasForeignKey(x => x.ArticleCategoryId);
+
     }
 }

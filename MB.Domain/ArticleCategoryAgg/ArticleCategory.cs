@@ -1,4 +1,5 @@
-﻿using MB.Domain.ArticleCategoryAgg.Services;
+﻿using MB.Domain.ArticleAgg;
+using MB.Domain.ArticleCategoryAgg.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -12,15 +13,14 @@ public class ArticleCategory
 {
     public long Id { get; private set; }
     public string Title { get; private set; }
-    public bool IsDeleted { get; private set; }
-    public DateTime CreationDate { get; private set; }
+    public bool IsDeleted { get; private set; } = false;
+    public DateTime CreationDate { get; private set; } = DateTime.Now;
+    public ICollection<Article> Articles { get; private set; } = new List<Article>();
     public ArticleCategory(string title, IArticleCategoryValidatorService validatorService)
     {
         GuardAgainstEmptyTitle("create", title);
         validatorService.ThrowExceptionIfExists(title);
         Title = title;
-        IsDeleted = false;
-        CreationDate = DateTime.Now;
     }
     public void GuardAgainstEmptyTitle(string operationName, string title)
     {
