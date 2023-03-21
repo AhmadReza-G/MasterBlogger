@@ -13,5 +13,5 @@ public interface IArticleRepository
     void Add(Article entity);
     Article Get(long id);
     void SaveChanges();
-
+    bool IsExists(string title);
 }

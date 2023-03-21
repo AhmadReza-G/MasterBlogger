@@ -42,6 +42,11 @@ public class ArticleRepository : IArticleRepository
             .ToList();
     }
 
+    public bool IsExists(string title)
+    {
+        return _context.Articles.Any(x => x.Title == title);
+    }
+
     public void SaveChanges()
     {
         _context.SaveChanges();
