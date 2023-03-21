@@ -12,7 +12,7 @@ public class Article
     public string Title { get; private set; }
     public string Image { get; private set; }
     public string ShortDescription { get; private set; }
-    public string Content { get; private set; }
+    public string? Content { get; private set; }
     public bool IsDeleted { get; private set; }
     public DateTime CreationDate { get; private set; }
     public long ArticleCategoryId { get; private set; }

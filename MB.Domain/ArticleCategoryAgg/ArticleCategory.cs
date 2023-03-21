@@ -16,6 +16,7 @@ public class ArticleCategory
     public bool IsDeleted { get; private set; } = false;
     public DateTime CreationDate { get; private set; } = DateTime.Now;
     public ICollection<Article> Articles { get; private set; } = new List<Article>();
+    protected ArticleCategory() { }
     public ArticleCategory(string title, IArticleCategoryValidatorService validatorService)
     {
         GuardAgainstEmptyTitle("create", title);

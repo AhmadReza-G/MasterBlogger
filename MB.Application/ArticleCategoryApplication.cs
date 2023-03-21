@@ -31,7 +31,7 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
         _articleCategoryRepository.SaveChanges();
     }
 
-    public List<ArticleCategoryViewModel> List()
+    public List<ArticleCategoryViewModel> GetList()
     {
         return _articleCategoryRepository.GetAll().Select(x => new ArticleCategoryViewModel
         {

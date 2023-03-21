@@ -20,7 +20,7 @@ namespace MB.Presentation.Areas.Administrator.Pages.ArticleCategoryManagement
         public RedirectToPageResult OnPost(CreateArticleCategory command)
         {
             _articleCategoryApplication.Create(command);
-            return RedirectToPage("./List");
+            return RedirectToPage("./GetList");
         }
     }
 }

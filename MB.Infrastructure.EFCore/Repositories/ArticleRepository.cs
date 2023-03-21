@@ -1,4 +1,6 @@
-﻿using MB.Domain.ArticleAgg;
+﻿using MB.Application.Contracts.Article;
+using MB.Domain.ArticleAgg;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +28,18 @@ public class ArticleRepository : IArticleRepository
         return _context.Articles.FirstOrDefault(x => x.Id == id);
     }
 
-    public List<Article> GetAll()
+    public List<ArticleViewModel> GetList()
     {
-        return _context.Articles.OrderByDescending(x => x.Id).ToList();
+        return _context.Articles.Include(x => x.ArticleCategory)
+            .Select(x => new ArticleViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                IsDeleted = x.IsDeleted,
+                CreationDate = x.CreationDate.ToString(),
+                ArticleCategory = x.ArticleCategory.Title
+            }).OrderByDescending(x => x.Id)
+            .ToList();
     }
 
     public void SaveChanges()

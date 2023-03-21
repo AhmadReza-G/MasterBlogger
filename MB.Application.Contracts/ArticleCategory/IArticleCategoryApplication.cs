@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MB.Application.Contracts.ArticleCategory;
 public interface IArticleCategoryApplication
 {
-    List<ArticleCategoryViewModel> List();
+    List<ArticleCategoryViewModel> GetList();
     void Create(CreateArticleCategory command);
     void Rename(RenameArticleCategory command);
     RenameArticleCategory Get(long id);

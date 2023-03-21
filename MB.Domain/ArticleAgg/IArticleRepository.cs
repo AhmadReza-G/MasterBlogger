@@ -1,4 +1,5 @@
-﻿using MB.Domain.ArticleCategoryAgg;
+﻿using MB.Application.Contracts.Article;
+using MB.Domain.ArticleCategoryAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 namespace MB.Domain.ArticleAgg;
 public interface IArticleRepository
 {
-    List<Article> GetAll();
+    List<ArticleViewModel> GetList();
     void Add(Article entity);
     Article Get(long id);
     void SaveChanges();
-    
+
 }

@@ -16,17 +16,17 @@ namespace MB.Presentation.Areas.Administrator.Pages.ArticleCategoryManagement
 
         public void OnGet()
         {
-            ArticleCategories = _articleCategoryApplication.List();
+            ArticleCategories = _articleCategoryApplication.GetList();
         }
         public RedirectToPageResult OnPostRemove(long id)
         {
             _articleCategoryApplication.Remove(id);
-            return RedirectToPage("./List");
+            return RedirectToPage("./GetList");
         }
         public RedirectToPageResult OnPostActivate(long id)
         {
             _articleCategoryApplication.Activate(id);
-            return RedirectToPage("./List");
+            return RedirectToPage("./GetList");
         }
     }
 }
