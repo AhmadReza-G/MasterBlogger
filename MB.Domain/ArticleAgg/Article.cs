@@ -31,4 +31,19 @@ public class Article
         CreationDate = DateTime.Now;
         ArticleCategoryId = articleCategoryId;
     }
+    public void Edit(string title, string image, string shortDescription, string? content, long articleCategoryId)
+    {
+        Title = title;
+        Image = image;
+        ShortDescription = shortDescription;
+        Content = content;
+    }
+    public void Remove()
+    {
+        IsDeleted = true;
+    }
+    public void Activate()
+    {
+        IsDeleted = false;
+    }
 }
