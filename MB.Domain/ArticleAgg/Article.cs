@@ -21,7 +21,7 @@ public class Article
     {
 
     }
-    public Article(string title, string image, string shortDescription, string content, long articleCategoryId)
+    public Article(string title, string image, string shortDescription, string? content, long articleCategoryId)
     {
         Title = title;
         Image = image;

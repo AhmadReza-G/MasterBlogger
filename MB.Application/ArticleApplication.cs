@@ -17,6 +17,12 @@ public class ArticleApplication : IArticleApplication
         _articleRepository = articleRepository;
     }
 
+    public void Create(CreateArticle command)
+    {
+        var article = new Article(command.Title, command.Image, command.ShortDescription, command.Content, command.ArticleCategoryId);
+        _articleRepository.Add(article);
+    }
+
     public List<ArticleViewModel> GetList()
     {
         return _articleRepository.GetList();

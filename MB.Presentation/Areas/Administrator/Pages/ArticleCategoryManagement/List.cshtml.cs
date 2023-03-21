@@ -21,12 +21,12 @@ namespace MB.Presentation.Areas.Administrator.Pages.ArticleCategoryManagement
         public RedirectToPageResult OnPostRemove(long id)
         {
             _articleCategoryApplication.Remove(id);
-            return RedirectToPage("./GetList");
+            return RedirectToPage("./List");
         }
         public RedirectToPageResult OnPostActivate(long id)
         {
             _articleCategoryApplication.Activate(id);
-            return RedirectToPage("./GetList");
+            return RedirectToPage("./List");
         }
     }
 }

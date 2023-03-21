@@ -13,9 +13,10 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
     private readonly IArticleCategoryRepository _articleCategoryRepository;
     private readonly IArticleCategoryValidatorService _articleCategoryValidatorService;
 
-    public ArticleCategoryApplication(IArticleCategoryRepository repository)
+    public ArticleCategoryApplication(IArticleCategoryRepository repository, IArticleCategoryValidatorService articleCategoryValidatorService)
     {
         _articleCategoryRepository = repository;
+        _articleCategoryValidatorService = articleCategoryValidatorService;
     }
 
     public void Create(CreateArticleCategory command)

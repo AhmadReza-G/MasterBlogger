@@ -26,7 +26,7 @@ public class ArticleCategory
     public void GuardAgainstEmptyTitle(string operationName, string title)
     {
         if (string.IsNullOrWhiteSpace(title))
-            throw new ArgumentNullException("title", $"Cannot {operationName} ArticleCategory with null title!");
+            throw new ArgumentNullException("title", $"Cannot {operationName} ArticleCategoryId with null title!");
     }
     public void Rename(string title)
     {

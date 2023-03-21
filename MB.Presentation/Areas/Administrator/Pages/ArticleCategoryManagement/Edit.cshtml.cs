@@ -22,7 +22,7 @@ namespace MB.Presentation.Areas.Administrator.Pages.ArticleCategoryManagement
         public RedirectToPageResult OnPost()
         {
             _articleCategoryApplication.Rename(ArticleCategory);
-            return RedirectToPage("./GetList");
+            return RedirectToPage("./List");
         }
     }
 }
