@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace MB.Domain.CommentAgg;
 public interface ICommentRepository
 {
-
+    void Create(Comment entity);
+    void SaveChanges();
 }

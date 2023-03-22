@@ -1,10 +1,12 @@
 ﻿using MB.Application;
 using MB.Application.Contracts.Article;
 using MB.Application.Contracts.ArticleCategory;
+using MB.Application.Contracts.Comment;
 using MB.Domain.ArticleAgg;
 using MB.Domain.ArticleAgg.Services;
 using MB.Domain.ArticleCategoryAgg;
 using MB.Domain.ArticleCategoryAgg.Services;
+using MB.Domain.CommentAgg;
 using MB.Infrastructure.EFCore;
 using MB.Infrastructure.EFCore.Repositories;
 using MB.Infrastructure.Query;
@@ -23,6 +25,9 @@ public class Bootstrapper
         serviceCollection.AddTransient<IArticleApplication, ArticleApplication>();
         serviceCollection.AddTransient<IArticleRepository, ArticleRepository>();
         serviceCollection.AddTransient<IArticleValidatorService, ArticleValidatorService>();
+
+        serviceCollection.AddTransient<ICommentApplication, CommentApplication>();
+        serviceCollection.AddTransient<ICommentRepository, CommentRepository>();
 
         serviceCollection.AddTransient<IArticleQuery, ArticleQuery>();
         serviceCollection.AddDbContext<MasterBloggerContext>(options => options.UseSqlServer(connectionString));

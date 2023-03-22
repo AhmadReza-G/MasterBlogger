@@ -64,7 +64,7 @@ namespace MB.Infrastructure.EFCore.Migrations
                     b.ToTable("Articles", (string)null);
                 });
 
-            modelBuilder.Entity("MB.Domain.ArticleCategoryAgg.ArticleCategoryId", b =>
+            modelBuilder.Entity("MB.Domain.ArticleCategoryAgg.ArticleCategory", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,18 +88,73 @@ namespace MB.Infrastructure.EFCore.Migrations
                     b.ToTable("ArticleCategories", (string)null);
                 });
 
+            modelBuilder.Entity("MB.Domain.CommentAgg.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<long>("ArticleId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("Comments", (string)null);
+                });
+
             modelBuilder.Entity("MB.Domain.ArticleAgg.Article", b =>
                 {
-                    b.HasOne("MB.Domain.ArticleCategoryAgg.ArticleCategoryId", "ArticleCategoryId")
+                    b.HasOne("MB.Domain.ArticleCategoryAgg.ArticleCategory", "ArticleCategory")
                         .WithMany("Articles")
                         .HasForeignKey("ArticleCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ArticleCategoryId");
+                    b.Navigation("ArticleCategory");
                 });
 
-            modelBuilder.Entity("MB.Domain.ArticleCategoryAgg.ArticleCategoryId", b =>
+            modelBuilder.Entity("MB.Domain.CommentAgg.Comment", b =>
+                {
+                    b.HasOne("MB.Domain.ArticleAgg.Article", "Article")
+                        .WithMany("Comments")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+                });
+
+            modelBuilder.Entity("MB.Domain.ArticleAgg.Article", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("MB.Domain.ArticleCategoryAgg.ArticleCategory", b =>
                 {
                     b.Navigation("Articles");
                 });
