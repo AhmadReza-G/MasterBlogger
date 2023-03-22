@@ -22,6 +22,20 @@ public class CommentApplication : ICommentApplication
         _commentRepository.Create(comment);
     }
 
+    public void Cancel(long id)
+    {
+        var comment = _commentRepository.Get(id);
+        comment.Cancel();
+        _commentRepository.SaveChanges();
+    }
+
+    public void Confirm(long id)
+    {
+        var comment = _commentRepository.Get(id);
+        comment.Confirm();
+        _commentRepository.SaveChanges();
+    }
+
     public List<CommentViewModel> GetList()
     {
         return _commentRepository.GetList();

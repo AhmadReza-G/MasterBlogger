@@ -23,6 +23,11 @@ public class CommentRepository : ICommentRepository
         SaveChanges();
     }
 
+    public Comment Get(long id)
+    {
+        return _context.Comments.FirstOrDefault(c => c.Id == id);
+    }
+
     public List<CommentViewModel> GetList()
     {
         return _context.Comments.Include(x => x.Article)
@@ -35,7 +40,7 @@ public class CommentRepository : ICommentRepository
                 CreationDate = x.CreationDate.ToString(),
                 Status = x.Status,
                 Article = x.Article.Title
-            }).ToList();
+            }).OrderByDescending(x => x.Id).ToList();
     }
 
     public void SaveChanges()

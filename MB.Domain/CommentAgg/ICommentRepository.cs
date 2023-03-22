@@ -9,6 +9,7 @@ namespace MB.Domain.CommentAgg;
 public interface ICommentRepository
 {
     void Create(Comment entity);
+    Comment Get(long id);
     List<CommentViewModel> GetList();
     void SaveChanges();
 }

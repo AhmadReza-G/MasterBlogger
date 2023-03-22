@@ -25,4 +25,12 @@ public class Comment
         Message = message;
         ArticleId = articleId;
     }
+    public void Confirm()
+    {
+        Status = Statuses.Confirmed;
+    }
+    public void Cancel()
+    {
+        Status = Statuses.Canceled;
+    }
 }
