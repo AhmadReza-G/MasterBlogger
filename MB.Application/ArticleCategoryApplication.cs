@@ -22,14 +22,14 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
     public void Create(CreateArticleCategory command)
     {
         var articleCategory = new ArticleCategory(command.Title, _articleCategoryValidatorService);
-        _articleCategoryRepository.Add(articleCategory);
+        _articleCategoryRepository.Create(articleCategory);
     }
 
     public void Rename(RenameArticleCategory command)
     {
-        var articleCategory = _articleCategoryRepository.Get(command.Id);
+        var articleCategory = _articleCategoryRepository.GetBy(command.Id);
         articleCategory.Rename(command.Title);
-        _articleCategoryRepository.SaveChanges();
+        //_articleCategoryRepository.SaveChanges();
     }
 
     public List<ArticleCategoryViewModel> GetList()
@@ -40,12 +40,13 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
             Title = x.Title,
             IsDeleted = x.IsDeleted,
             CreationDate = x.CreationDate.ToString()
-        }).ToList();
+        }).OrderByDescending(x => x.Id)
+        .ToList();
     }
 
     public RenameArticleCategory Get(long id)
     {
-        var articleCategory = _articleCategoryRepository.Get(id);
+        var articleCategory = _articleCategoryRepository.GetBy(id);
         return new RenameArticleCategory
         {
             Id = articleCategory.Id,
@@ -55,15 +56,15 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
 
     public void Remove(long id)
     {
-        var articleCategory = _articleCategoryRepository.Get(id);
+        var articleCategory = _articleCategoryRepository.GetBy(id);
         articleCategory.Remove();
-        _articleCategoryRepository.SaveChanges();
+        //_articleCategoryRepository.SaveChanges();
     }
 
     public void Activate(long id)
     {
-        var articleCategory = _articleCategoryRepository.Get(id);
+        var articleCategory = _articleCategoryRepository.GetBy(id);
         articleCategory.Activate();
-        _articleCategoryRepository.SaveChanges();
+        //_articleCategoryRepository.SaveChanges();
     }
 }

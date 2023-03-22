@@ -1,4 +1,5 @@
-﻿using MB.Domain.ArticleAgg;
+﻿using _01_Framework.Domain;
+using MB.Domain.ArticleAgg;
 using MB.Domain.ArticleCategoryAgg.Services;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MB.Domain.ArticleCategoryAgg;
-public class ArticleCategory
+public class ArticleCategory : DomainBase<long>
 {
-    public long Id { get; private set; }
     public string Title { get; private set; }
     public bool IsDeleted { get; private set; } = false;
-    public DateTime CreationDate { get; private set; } = DateTime.Now;
     public ICollection<Article> Articles { get; private set; } = new List<Article>();
     protected ArticleCategory() { }
     public ArticleCategory(string title, IArticleCategoryValidatorService validatorService)

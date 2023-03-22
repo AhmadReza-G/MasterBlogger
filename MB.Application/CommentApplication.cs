@@ -24,16 +24,16 @@ public class CommentApplication : ICommentApplication
 
     public void Cancel(long id)
     {
-        var comment = _commentRepository.Get(id);
+        var comment = _commentRepository.GetBy(id);
         comment.Cancel();
-        _commentRepository.SaveChanges();
+        //_commentRepository.SaveChanges();
     }
 
     public void Confirm(long id)
     {
-        var comment = _commentRepository.Get(id);
+        var comment = _commentRepository.GetBy(id);
         comment.Confirm();
-        _commentRepository.SaveChanges();
+        //_commentRepository.SaveChanges();
     }
 
     public List<CommentViewModel> GetList()

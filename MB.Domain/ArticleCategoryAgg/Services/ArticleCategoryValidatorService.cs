@@ -13,7 +13,7 @@ public class ArticleCategoryValidatorService : IArticleCategoryValidatorService
 
     public void ThrowExceptionIfExists(string title)
     {
-        if (!_articleCategoryRepository.IsExists(title))
+        if (!_articleCategoryRepository.IsExists(x => x.Title == title))
             return;
 
         throw new DuplicatedRecordException("This record already exists in DataBase!");

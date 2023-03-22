@@ -1,4 +1,6 @@
-﻿using MB.Application.Contracts.Article;
+﻿using _01_Framework.Infrastructure;
+using MB.Application.Contracts.Article;
+using MB.Application.Contracts.Comment;
 using MB.Domain.ArticleCategoryAgg;
 using System;
 using System.Collections.Generic;
@@ -7,11 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MB.Domain.ArticleAgg;
-public interface IArticleRepository
+public interface IArticleRepository : IRepository<long, Article>
 {
     List<ArticleViewModel> GetList();
-    void Add(Article entity);
-    Article Get(long id);
-    void SaveChanges();
-    bool IsExists(string title);
 }

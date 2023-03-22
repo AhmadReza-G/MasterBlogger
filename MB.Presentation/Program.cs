@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Create services to the container.
 var connectionString = builder.Configuration.GetConnectionString("MasterBloggerDB");
 if (connectionString is not null)
     Bootstrapper.Config(builder.Services, connectionString);

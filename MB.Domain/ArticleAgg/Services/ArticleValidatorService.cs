@@ -18,7 +18,7 @@ public class ArticleValidatorService : IArticleValidatorService
 
     public void ThrowExceptionIfExists(string title)
     {
-        if (!_articleRepository.IsExists(title))
+        if (!_articleRepository.IsExists(x => x.Title == title))
             return;
 
         throw new DuplicatedRecordException("This record already exists in DataBase!");
