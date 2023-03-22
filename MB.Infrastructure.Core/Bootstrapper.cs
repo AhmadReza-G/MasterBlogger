@@ -1,4 +1,5 @@
-﻿using MB.Application;
+﻿using _01_Framework.Infrastructure;
+using MB.Application;
 using MB.Application.Contracts.Article;
 using MB.Application.Contracts.ArticleCategory;
 using MB.Application.Contracts.Comment;
@@ -30,6 +31,9 @@ public class Bootstrapper
         serviceCollection.AddTransient<ICommentRepository, CommentRepository>();
 
         serviceCollection.AddTransient<IArticleQuery, ArticleQuery>();
+
+        serviceCollection.AddTransient<IUnitOfWork, UnitOfWorkEF>();
+
         serviceCollection.AddDbContext<MasterBloggerContext>(options => options.UseSqlServer(connectionString));
     }
 }
