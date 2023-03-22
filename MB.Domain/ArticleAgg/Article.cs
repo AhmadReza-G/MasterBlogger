@@ -1,4 +1,5 @@
 ﻿using MB.Domain.ArticleCategoryAgg;
+using MB.Domain.CommentAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,11 @@ public class Article
     public string Image { get; private set; }
     public string ShortDescription { get; private set; }
     public string? Content { get; private set; }
-    public bool IsDeleted { get; private set; }
-    public DateTime CreationDate { get; private set; }
+    public bool IsDeleted { get; private set; } = false;
+    public DateTime CreationDate { get; private set; } = DateTime.Now;
     public long ArticleCategoryId { get; private set; }
     public ArticleCategory ArticleCategory { get; private set; }
+    public ICollection<Comment> Comments { get; private set; } = new List<Comment>();
     protected Article()
     {
 
@@ -28,8 +30,6 @@ public class Article
         Image = image;
         ShortDescription = shortDescription;
         Content = content;
-        IsDeleted = false;
-        CreationDate = DateTime.Now;
         ArticleCategoryId = articleCategoryId;
     }
     public void Edit(string title, string image, string shortDescription, string? content, long articleCategoryId)
